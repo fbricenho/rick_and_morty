@@ -13,9 +13,15 @@ import { CharactersType } from "../../types";
 
 interface AutoCompleteProps {
   options?: CharactersType[];
+  hoverOption: number;
+  setCharacter: (character: CharactersType) => void;
 }
 
-const AutoComplete = ({ options }: AutoCompleteProps) => {
+const AutoComplete = ({
+  options,
+  hoverOption,
+  setCharacter,
+}: AutoCompleteProps) => {
   const classes = useStyles();
 
   const noResultsFound = () => (
@@ -49,9 +55,17 @@ const AutoComplete = ({ options }: AutoCompleteProps) => {
     <List className={classes.list}>
       {!options && noResultsFound()}
       {options &&
-        options.map((option: any) => (
+        options.map((option: any, index) => (
           <Fragment key={option.id}>
-            <ListItem alignItems="flex-start" button>
+            <ListItem
+              alignItems="flex-start"
+              button
+              selected={hoverOption === index}
+              onClick={(e) => {
+                e.preventDefault();
+                setCharacter(options[index]);
+              }}
+            >
               <ListItemAvatar>
                 <Avatar alt={option.name} src={option.image} />
               </ListItemAvatar>

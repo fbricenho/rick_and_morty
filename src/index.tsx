@@ -7,14 +7,12 @@ import theme from "./theme";
 import GraphQLProvider from "./components/GraphQLProvider";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <GraphQLProvider>
-        <CssBaseline />
-        <App />
-      </GraphQLProvider>
-    </ThemeProvider>
-  </React.StrictMode>,
+  <ThemeProvider theme={theme}>
+    <GraphQLProvider>
+      <CssBaseline />
+      <App />
+    </GraphQLProvider>
+  </ThemeProvider>,
   document.getElementById("root")
 );
 
